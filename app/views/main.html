@@ -1,47 +1,53 @@
 <section>
-  <div class="row" style="margin: 0">
-    <div class="col-sm-2">
+  <div class="form-group">
+    <div class="col-md-2" style='padding-left:5px'>
       <br>
-      <div class="form-group" style="padding-left: 10px">
+      <div class="form-group" style="background-color:#002000; border-radius: 5px;">
         <!--debug buttons-->
         <!--<button ng-click="viewMethods.addTestData()">Add Test Data</button>-->
-
-
         <!-- altitude button-->
-        <label>Choose Altitude</label>
-        <button class="btn btn-info btn-block" type="button"
-                ng-click="viewMethods.goUP()">Up
-        </button>
-        <pre style="margin-bottom: 0" class="text-center">{{currentAltitudeLabel}}</pre>
-        <button class="btn btn-primary btn-block" type="button"
-                ng-click="viewMethods.goDOWN()">Down
-        </button>
-        <br>
-        <br>
-
-        <!-- time controls-->
-        <div class="form-group">
-          <label>Choose Time</label>
-          <pre class="text-center">Last {{currentTimeSpan}} hours</pre>
-          <slider ng-mouseup="executeMe()" ng-model="currentTimeSpan" min="6" step="6" max="504" value="12"></slider>
-<br>
-          <label>Turbulence @ altitude / time</label>
+        <ul class="nav nav-pills">
+          <li ng-class='{active: selectedUITab===1}'>
+            <a href style='font-size:small' ng-click='viewMethods.setDisplayTilesByAltAndTime();selectedUITab=1'>Filter by Alt.</a></li>
+          <li ng-class='{active: selectedUITab===2}'><a href style='font-size:small' ng-click='viewMethods.setDisplayAllTiles();selectedUITab=2'>Show all Alt.</a></li>
+        </ul>
+        <div ng-show='selectedUITab===1' style='padding: 15px'>
+          <button class="btn btn-info btn-block" type="button" ng-click="viewMethods.goUP()">Up
+          </button>
+          <pre style="margin-bottom: 0;color:#000000" class="text-center">{{currentAltitudeLabel}}</pre>
+          <button class="btn btn-primary btn-block" type="button" ng-click="viewMethods.goDOWN()">Down
+          </button>
+          <br>
+          <br>
+          <!-- time controls-->
+          <label style="color:#C0C0C0">History</label>
+          <pre style="color:#000000" class="text-center">Last {{currentTimeSpan}} hours</pre>
+          <slider ng-model="currentTimeSpan" min="6" step='6' max="504"></slider>
+          <br>
+          <label style="color:#C0C0C0">Events at Alt. / time</label>
           <pre class="text-center">{{noOfTilesForAltAndTime}} / {{noOfTilesForAlt}} events</pre>
-
           <br>
           <br>
-          <label>Number of events in system</label>
-          <pre class="text-center">{{noOfTotalTiles}} events</pre>
-
+          <label style="color:#C0C0C0">Total events</label>
+          <pre class="text-center" style="color:#000000">{{noOfTotalTiles}} events</pre>
         </div>
-
+        <div ng-show='selectedUITab===2' id='all' style='padding: 15px'>
+          <!-- time controls-->
+          <label style="color:#C0C0C0">History</label>
+          <pre style="color:#000000" class="text-center">Last {{currentTimeSpan}} hours</pre>
+          <slider ng-model="currentTimeSpan" ng-mouseUp='viewMethods.sliderMouseReleased()' min="6" step='6' max="504"></slider>
+          <br>
+          <label style="color:#C0C0C0">Events at timespan</label>
+          <pre class="text-center">{{noOfTilesAtTimespan}}</pre>
+          <br>
+          <br>
+          <label style="color:#C0C0C0">Total events</label>
+          <pre class="text-center" style="color:#000000">{{noOfTotalTiles}} events</pre>
+        </div>
       </div>
     </div>
-    <div class="col-sm-10">
-
-      <leaflet center="center" layers="layers" controls="controls" class="mainmap"></leaflet>
+    <div class="col-md-10">
+      <leaflet name='leafletCtrl' style='border-style: solid' center="center" layers="layers" controls="controls" class="mainmap"></leaflet>
     </div>
-
   </div>
 </section>
-

@@ -22,6 +22,15 @@ angular.module('skypathApp')
       //return (180/Math.PI*Math.atan(Math.sinh(n)));
     }
 
+    factory.long2tile=function (lon,zoom) { 
+      return (Math.floor((lon+180)/360*Math.pow(2,zoom))); 
+    }
+
+   factory.lat2tile=  function (lat,zoom) { 
+    return (
+      Math.floor((1-Math.log(Math.tan(lat*Math.PI/180) + 1/Math.cos(lat*Math.PI/180))/Math.PI)/2 *Math.pow(2,zoom))); 
+  }
+
 
     /*color conversion */
     factory.getColorBySeverity = function (severity){
@@ -30,23 +39,45 @@ angular.module('skypathApp')
           return 'white'
           break;
         case 1:
-          return 'green'
+          return '#0EFF00'//light green
           break;
         case 2:
-          return 'blue'
+          return '#F2FF0C'
           break;
         case 3:
-          return 'yellow'
+          return '#FFA600'
           break;
         case 4:
-          return 'red'
+          return '#FA0000'
           break;
         case 5:
-          return 'black'
+          return '#FF00C3'
           break;
         default:
           return 'white'
       }
+      // switch(severity) {
+      //   case 0:
+      //     return 'white'
+      //     break;
+      //   case 1:
+      //     return '#CCFFCC'//light green
+      //     break;
+      //   case 2:
+      //     return '#CCFF99'
+      //     break;
+      //   case 3:
+      //     return '#FFFF99'
+      //     break;
+      //   case 4:
+      //     return '#FFB266'
+      //     break;
+      //   case 5:
+      //     return '#FF3333'
+      //     break;
+      //   default:
+      //     return 'white'
+      // }
 
     }
 

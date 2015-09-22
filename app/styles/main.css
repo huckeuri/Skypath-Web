@@ -99,9 +99,6 @@ body {
   left:0;
   margin-left: 0;
   margin-bottom: 35px;
-  width: 100%;
-  height: 650px;
-  /*width: 100%;*/
   border-radius: 8px;
   z-index: 0;
 
@@ -120,6 +117,59 @@ body {
 
 .leaflet-control-layers.leaflet-control {
   display: none;
+}
+
+/* css to customize Leaflet tool-tip custom look  */
+/*.popup-background .leaflet-popup-tip,
+.popup-background0 .leaflet-popup-content-wrapper {
+    background: white;
+    color: black;
+}
+.popup-background1 .leaflet-popup-content-wrapper {
+    background: #CCFFCC;
+    color: black;
+}
+.popup-background2 .leaflet-popup-content-wrapper {
+    background: #CCFF99;
+    color: black;
+}
+.popup-background3 .leaflet-popup-content-wrapper {
+    background: #FFFF99;
+    color: black;
+}
+.popup-background4 .leaflet-popup-content-wrapper {
+    background: #FFB266;
+    color: black;
+}
+.popup-background5 .leaflet-popup-content-wrapper {
+    background: #FF3333;
+    color: black;
+}*/
+/* css to customize Leaflet tool-tip custom look  */
+.popup-background .leaflet-popup-tip,
+.popup-background0 .leaflet-popup-content-wrapper {
+    background: white;
+    color: black;
+}
+.popup-background1 .leaflet-popup-content-wrapper {
+    background: #0EFF00;
+    color: black;
+}
+.popup-background2 .leaflet-popup-content-wrapper {
+    background: #F2FF0C;
+    color: black;
+}
+.popup-background3 .leaflet-popup-content-wrapper {
+    background: #FFA600;
+    color: black;
+}
+.popup-background4 .leaflet-popup-content-wrapper {
+    background: #FA0000;
+    color: black;
+}
+.popup-background5 .leaflet-popup-content-wrapper {
+    background: #FF00C3;
+    color: black;
 }
 
 
