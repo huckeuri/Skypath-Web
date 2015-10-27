@@ -1,11 +1,55 @@
 <section>
+  <div class="container text-center" ng-show='serverOperationInProgress'>
+    <button class="btn btn-xs btn-warning"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</button>
+  </div>
   <div class="form-group">
-    <div class="col-md-2" style='padding-left:5px'>
+    <div class="col-xs-{{sideBarColWidth}}">
       <br>
-      <div class="form-group" style="background-color:#002000; border-radius: 5px;">
-        <!--debug buttons-->
-        <!--<button ng-click="viewMethods.addTestData()">Add Test Data</button>-->
-        <!-- altitude button-->
+      <div class="form-group" style="border-radius: 5px;" ng-show='activateRawDataFiltering'>
+        <div class='panel panel-primary'>
+          <pre class="panel-heading">Data filtering</pre>
+          <div class='panel-body'>
+            <input class='form-group' placeholder="Employee Id (e.g e098288)" ng-model='emplyeeIdFilterFromServer'>
+            <input class='form-group' placeholder="Flight #" ng-model='flightNumberFilterFromServer'>
+            <div>
+              <button class='btn btn-success' ng-click='viewMethods.reportFilter()'>filter</button>
+              <!-- <span ng-show='serverOperationInProgress' name="spinner3" img-src="../spinner.gif" class="ng-isolate-scope">  
+            <img height='30' ng-show="true" src="../spinner.gif">  
+            </span> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default" ng-show='tileDataExpanded && activateRawDataFiltering' style='height: 380px !important;overflow: scroll;'>
+        <div class="panel-heading"><b>Tile: {{tileReports[0].tileX}},{{tileReports[0].tileY}}</b></div>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Time</th>
+              <th>Alt.</th>
+              <!-- <input  ng-model='flightNumberFilter'> -->
+              <th>Sev.</th>
+              <th>Flight #</th>
+              <!-- <th>
+                <input ng-model='flightNumberFilter'>
+              </th> -->
+              <th class="col-xs-2">empId.</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="tileReport in tileReports | filter:flightNumberFilter | orderBy:'-timestamp'">
+              <td class="col-xs-2">{{$index}}</td>
+              <td class="col-xs-2">{{tileReport.humenTime}}</td>
+              <td class="col-xs-2">{{tileReport.alt}}</td>
+              <td class="col-xs-2">{{tileReport.severity}}</td>
+              <td class="col-xs-2">{{tileReport.fNum}}</td>
+              <td class="col-xs-2">{{tileReport.empId}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div  class="form-group" ng-show='!activateRawDataFiltering' style="background-color:#002000; border-radius: 5px;">
         <ul class="nav nav-pills">
           <li ng-class='{active: selectedUITab===1}'>
             <a href style='font-size:small' ng-click='viewMethods.setDisplayTilesByAltAndTime();selectedUITab=1'>Filter by Alt.</a></li>
@@ -46,8 +90,9 @@
         </div>
       </div>
     </div>
-    <div class="col-md-10">
+    <div class="col-xs-{{mapColWidth}}">
       <leaflet name='leafletCtrl' style='border-style: solid' center="center" layers="layers" controls="controls" class="mainmap"></leaflet>
     </div>
   </div>
+  
 </section>

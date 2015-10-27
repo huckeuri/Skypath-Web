@@ -20,7 +20,7 @@ angular
     'leaflet-directive',
     'ui.bootstrap-slider'
   ])
-  .config(function ($routeProvider) {
+  .config(function($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -36,7 +36,14 @@ angular
         redirectTo: '/'
       });
   })
-  .run(function ($rootScope) {
-    $rootScope.latLng = {lat: 32.8, lng: 34.5};
+  .run(function($rootScope) {
+    $rootScope.latLng = {
+      lat: 32.8,
+      lng: 34.5
+    };
     $rootScope.initialZoom = 6;
+
+
+    
+
   });;
