@@ -47,8 +47,8 @@ skypathAppModule.config(function($httpProvider) {
 
 
 skypathAppModule.service('restService', ['$http', '$q', function($http, $q) {
-  //var urlBase = 'http://104.197.5.131:3000';
-  var urlBase = 'http://localhost:3000';
+  var urlBase = 'http://104.197.5.131:3000';
+  //var urlBase = 'http://localhost:3000';
   var dataFactory = {};
 
   var turbulenceUrlBase = urlBase + '/turbulence';
